@@ -13,6 +13,9 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+import Button from './Components/button.js';
+import BoxModelDemo from './Components/BoxModelDemo ';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -25,17 +28,18 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={viewStyle}>
+      <BoxModelDemo></BoxModelDemo>
         <Text style={textStyele}>
          Welcome To Bianaat E-Commerce 
         </Text>
         
-        <TouchableHighlight 
-       underlayColor="#60b044cc"
-       activeOpacity={.1}
+        <Button 
         onPress={() => {}}
-        style={[btn, btnPrimary]}>
+        style={btnPrimary} >
+
 <Text>get Started</Text>
-</TouchableHighlight>
+
+</Button>
         {/* <Text style={styles.instructions}>
           To get started, edit App.js
         </Text>
@@ -79,16 +83,7 @@ color:'#fff',
 fontSize:20
 }
 
-const btn = {
-  borderStyle: 'solid',
-  borderColor: '#d5d5d5',
-  borderWidth: 1,
-  backgroundColor: '#eee',
-  borderRadius: 3,
-  padding: 3,
-  paddingLeft: 5,
-  paddingRight: 5
-  };
+
   const btnPrimary = {
   backgroundColor: 'cyan',
   borderColor: '#000'
