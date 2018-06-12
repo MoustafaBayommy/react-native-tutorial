@@ -29,8 +29,9 @@ export default BOXModelDemo;
     main: {  
         flex: 1,   
          paddingVertical: 20, 
-        flexDirection: 'row', 
-               flexWrap: 'wrap'  
+        flexDirection: 'row'
+        // , 
+              //  flexWrap: 'wrap'  
             }, 
              content: {   
                 padding: 20,  

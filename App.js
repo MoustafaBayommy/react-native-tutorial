@@ -13,8 +13,12 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import Button from './Components/button.js';
-import BoxModelDemo from './Components/BoxModelDemo ';
+import Button from './src/Components/tutorials/button.js';
+// import BoxModelDemo from './Components/BoxModelDemo.js';
+import Header from './src/Components/tutorials/header.js';
+import FlexBoxLayout from './src/Components/tutorials/flexBoxLayout.js';
+
+
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -23,23 +27,25 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
-      <View style={viewStyle}>
-      <BoxModelDemo></BoxModelDemo>
-        <Text style={textStyele}>
-         Welcome To Bianaat E-Commerce 
-        </Text>
+      <View style={styles.container}>
+      <Header>
+        <Text>B-Commerce</Text>
+
+        </Header>
+    <FlexBoxLayout></FlexBoxLayout>
+      {/* <BoxModelDemo></BoxModelDemo>
+    */}
         
-        <Button 
+        {/* <Button 
         onPress={() => {}}
         style={btnPrimary} >
 
 <Text>get Started</Text>
 
-</Button>
+</Button> */}
         {/* <Text style={styles.instructions}>
           To get started, edit App.js
         </Text>
@@ -53,9 +59,9 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'column',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+   
     backgroundColor: '#F5FCFF',
   },
   welcome: {
