@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import {
     View,
     ListView,
-    StyleSheet
+    StyleSheet,
+    Modal,
+    TouchableOpacity
 } from 'react-native';
 
 
@@ -21,7 +23,15 @@ export default class NewsFeed extends Component {
             rowHasChanged: (row1, row2) => row1.title !== row2.title
         });
 
-        this.state = { dataSource: this.ds.cloneWithRows(props.news) };
+        this.state = {
+            dataSource:
+                this.ds.cloneWithRows(props.news),
+            modelVisible: false
+        };
+
+        this.renderRow.bind(this);
+        this.openModel.bind(this);
+        this.onModalClose.bind(this);
     }
 
     render() {
@@ -34,7 +44,7 @@ export default class NewsFeed extends Component {
                     renderRow={this.renderRow}
                     style={this.props.listStyles}
                 />
-
+                {this.renderModal()}
             </View>
         )
     }
@@ -44,6 +54,7 @@ export default class NewsFeed extends Component {
         const index = parseInt(rest[1], 10);
         return (
             <NewsItem
+                onPress={() => this.openModel()}
                 index={index}
                 style={styles.newsItem}
                 {...rowData}
@@ -52,7 +63,36 @@ export default class NewsFeed extends Component {
         )
     }
 
+    renderModel() {
 
+        return (
+            <Modal visible={this.state.modelVisible}
+                onRequestClose={this.onModalClose}
+                animationType="slide"
+            >
+                <View style={styles.modalContent}>
+                    <TouchableOpacity onPress={this.onModalClose} style={styles.closeButton}        >
+                        <SmallText>Close
+                             </SmallText>
+                    </TouchableOpacity>
+                </View>
+            </Modal>
+        )
+    }
+
+
+    openModel() {
+        this.setState({
+            modelVisible: true
+        })
+    }
+
+
+    closeModel() {
+        this.setState({
+            modelVisible: false
+        })
+    }
 }
 
 NewsFeed.propTypes = {
@@ -83,5 +123,21 @@ NewsFeed.defaultProps = {
 };
 
 
-const styles = StyleSheet.create({ newsItem: { marginBottom: 20 } });
+const styles = StyleSheet.create({
+    newsItem:
+        {
+             marginBottom: 20 
+        },
+    modalContent: {
+        flex: 1,
+        justifyContent: 'center',
+        paddingTop: 20,
+        backgroundColor: globalStyles.BG_COLOR
+    }, closeButton:
+        {
+            paddingVertical: 5,
+            paddingHorizontal: 10,
+            flexDirection: 'row'
+        }
+});
 

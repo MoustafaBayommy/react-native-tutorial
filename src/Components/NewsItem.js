@@ -1,10 +1,10 @@
-import React,{ Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-View,
-TouchableOpacity,
-StyleSheet
+    View,
+    TouchableOpacity,
+    StyleSheet
 } from 'react-native';
 import Thumble from './Thumble';
 import Byline from './Byline';
@@ -13,10 +13,10 @@ import * as globalStyles from '../styles/global';
 
 
 
-export default class extends Component{
+export default class extends Component {
 
 
-    render=()=>{
+    render = () => {
         const {
             style,
             imageUrl,
@@ -25,31 +25,34 @@ export default class extends Component{
             date,
             location,
             description,
-            } = this.props;
-        return(
-<TouchableOpacity
-style={style}
->
-<View>
-<Thumbnail
-url={imageUrl}
-titleText={title}
-accentColor={accentColor}
-style={styles.thumbnail}
-/>
-<View style={styles.content}>
-<Byline
-author={author}
-date={date}
-location={location}
-/>
-<AppText>
-{description}
-</AppText>
-</View>
-</View>
-    </TouchableOpacity>
-    )}
+            onPress
+        } = this.props;
+        return (
+            <TouchableOpacity
+                style={style}
+                onPress={onPress}
+            >
+                <View>
+                    <Thumbnail
+                        url={imageUrl}
+                        titleText={title}
+                        accentColor={accentColor}
+                        style={styles.thumbnail}
+                    />
+                    <View style={styles.content}>
+                        <Byline
+                            author={author}
+                            date={date}
+                            location={location}
+                        />
+                        <AppText>
+                            {description}
+                        </AppText>
+                    </View>
+                </View>
+            </TouchableOpacity>
+        )
+    }
 }
 
 NewsItem.propTypes = {
@@ -61,15 +64,16 @@ NewsItem.propTypes = {
     location: PropTypes.string,
     index: PropTypes.number.isRequired,
     onPress: PropTypes.func.isRequired,
-    style: View.propTypes.style
-    };
+    style: View.propTypes.style,
+    onPress: PropTypes.func.isRequired,
+};
 
 
-    const styles = StyleSheet.create({
-        thumbnail: {
+const styles = StyleSheet.create({
+    thumbnail: {
         marginBottom: 5
-        },
-        content: {
+    },
+    content: {
         paddingHorizontal: 5
-        }
-        });
+    }
+});
