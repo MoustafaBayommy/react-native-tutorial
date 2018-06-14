@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet} from 'react-native';
+import {Text,StyleSheet} from 'react-native';
 import AppText from './AppText';
 
 import * as globalStyles from '../styles/global';

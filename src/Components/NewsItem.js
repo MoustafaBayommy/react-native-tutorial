@@ -7,13 +7,13 @@ import {
     StyleSheet
 } from 'react-native';
 import Thumble from './Thumble';
-import Byline from './Byline';
+import Byline from './ByLine';
 import AppText from './AppText';
 import * as globalStyles from '../styles/global';
 
 
 
-export default class extends Component {
+export default class NewsItem extends Component {
 
 
     render = () => {

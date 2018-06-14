@@ -6,32 +6,36 @@ import {
     ListView,
     StyleSheet,
     Modal,
-    TouchableOpacity
+    TouchableOpacity,
+    WebView
 } from 'react-native';
 
 
 import { NewsItem } from './NewsItem'
+import {SmallText} from './SmallText'
 
 import * as globalStyles from '../styles/global';
+
 
 export default class NewsFeed extends Component {
 
 
     constructor(props) {
         super(props);
-        this.ds = ListView.DataSource({
+        this.ds = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1.title !== row2.title
         });
 
         this.state = {
             dataSource:
-                this.ds.cloneWithRows(props.news),
-            modelVisible: false
+            this.ds.cloneWithRows(props.news),
+            modelVisible: false,
+            modalUrl: ''
         };
 
         this.renderRow.bind(this);
         this.openModel.bind(this);
-        this.onModalClose.bind(this);
+        this.closeModel.bind(this);
     }
 
     render() {
@@ -54,7 +58,7 @@ export default class NewsFeed extends Component {
         const index = parseInt(rest[1], 10);
         return (
             <NewsItem
-                onPress={() => this.openModel()}
+                onPress={() => this.openModel(rowData.url)}
                 index={index}
                 style={styles.newsItem}
                 {...rowData}
@@ -63,7 +67,7 @@ export default class NewsFeed extends Component {
         )
     }
 
-    renderModel() {
+    renderModal() {
 
         return (
             <Modal visible={this.state.modelVisible}
@@ -75,15 +79,17 @@ export default class NewsFeed extends Component {
                         <SmallText>Close
                              </SmallText>
                     </TouchableOpacity>
+                    <WebView />
                 </View>
             </Modal>
         )
     }
 
 
-    openModel() {
+    openModel(url) {
         this.setState({
-            modelVisible: true
+            modelVisible: true,
+            modalUrl:url
         })
     }
 

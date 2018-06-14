@@ -12,11 +12,13 @@ import {
   View,
   TouchableHighlight
 } from 'react-native';
+import TabNavigator from 'react-native-tab-navigator';
 
-import Button from './src/Components/tutorials/button.js';
-// import BoxModelDemo from './Components/BoxModelDemo.js';
-import Header from './src/Components/tutorials/header.js';
-import FlexBoxLayout from './src/Components/tutorials/flexBoxLayout.js';
+import NewsFeed from './src/Components/NewsFeed'
+
+
+import FlexBoxLayout from './src/Components/tutorials/flexBoxLayout'
+
 
 
 
@@ -28,30 +30,37 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component {
+
+
+  
+state={
+  selectedTab:  'NewsFeeds'
+}
+
   render() {
     return (
       <View style={styles.container}>
-      <Header>
-        <Text>B-Commerce</Text>
-
-        </Header>
-    <FlexBoxLayout></FlexBoxLayout>
-      {/* <BoxModelDemo></BoxModelDemo>
-    */}
-        
-        {/* <Button 
-        onPress={() => {}}
-        style={btnPrimary} >
-
-<Text>get Started</Text>
-
-</Button> */}
-        {/* <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text> */}
+     <TabNavigator>
+     <TabNavigator.Item
+       selected={this.state.selectedTab === 'NewsFeeds'}
+       title="NewsFeeds"
+      //  renderIcon={() => <Image source={...} />}
+      //  renderSelectedIcon={() => <Image source={...} />}
+       badgeText="1"
+       onPress={() => this.setState({ selectedTab: 'NewsFeeds' })}>
+       <NewsFeed />
+     </TabNavigator.Item>
+     
+     <TabNavigator.Item
+       selected={this.state.selectedTab === 'profile'}
+       title="Profile"
+      //  renderIcon={() => <Image source={...} />}
+      //  renderSelectedIcon={() => <Image source={...} />}
+      //  renderBadge={() => <CustomBadgeView />}
+       onPress={() => this.setState({ selectedTab: 'profile' })}>
+       <FlexBoxLayout/>
+       </TabNavigator.Item>
+   </TabNavigator>
       </View>
     );
   }
