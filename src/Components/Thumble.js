@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet,Image,View} from 'react-native';
+import {StyleSheet,ImageBackground,View} from 'react-native';
 import Title from './Title';
 
 import * as globalStyles from '../styles/global';
@@ -20,7 +20,7 @@ return(
 
 
 {url.length >0?(
-<Image  style={[styles.image]}
+<ImageBackground   style={[styles.image]}
 source={{
     uri: url
     }}
@@ -28,7 +28,7 @@ source={{
 
 {TitleComponent}
 
-</Image>)
+</ImageBackground >)
 :(
     <View
 style={[styles.image, imageStyle]}

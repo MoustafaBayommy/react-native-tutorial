@@ -25,7 +25,8 @@ export default class NewsItem extends Component {
             date,
             location,
             description,
-            onPress
+            onPress,
+            accentColor
         } = this.props;
         return (
             <TouchableOpacity
@@ -33,7 +34,7 @@ export default class NewsItem extends Component {
                 onPress={onPress}
             >
                 <View>
-                    <Thumbnail
+                    <Thumble
                         url={imageUrl}
                         titleText={title}
                         accentColor={accentColor}

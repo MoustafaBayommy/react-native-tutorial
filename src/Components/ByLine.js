@@ -5,7 +5,7 @@ import SmallText from './SmallText';
 
 import * as globalStyles from '../styles/global';
 
-const ByLine=({date,auther,location})=>(
+const ByLine=({date,author,location})=>(
 <View  >
     <View style={styles.row}>
       <SmallText>

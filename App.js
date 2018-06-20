@@ -14,7 +14,12 @@ import {
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 
-import NewsFeed from './src/Components/NewsFeed'
+// import NewsFeed from './src/Components/NewsFeed'
+
+import  NewsFeed  from './src/Components/NewsFeed'
+import Search from './src/Components/Search'
+import SliderSwitch from './src/Components/Slider-Switch'
+import * as globalStyles from './src/styles/global';
 
 
 import FlexBoxLayout from './src/Components/tutorials/flexBoxLayout'
@@ -34,31 +39,32 @@ export default class App extends Component {
 
   
 state={
-  selectedTab:  'NewsFeeds'
+  selectedTab:   'Search'
 }
 
   render() {
     return (
       <View style={styles.container}>
+ 
      <TabNavigator>
      <TabNavigator.Item
-       selected={this.state.selectedTab === 'NewsFeeds'}
+       selected={this.state.selectedTab === 'NewsFeed'}
        title="NewsFeeds"
       //  renderIcon={() => <Image source={...} />}
       //  renderSelectedIcon={() => <Image source={...} />}
        badgeText="1"
-       onPress={() => this.setState({ selectedTab: 'NewsFeeds' })}>
-       <NewsFeed />
+       onPress={() => this.setState({ selectedTab: 'NewsFeed' })}>
+       <SliderSwitch />
      </TabNavigator.Item>
      
      <TabNavigator.Item
-       selected={this.state.selectedTab === 'profile'}
+       selected={this.state.selectedTab === 'Search'}
        title="Profile"
       //  renderIcon={() => <Image source={...} />}
       //  renderSelectedIcon={() => <Image source={...} />}
       //  renderBadge={() => <CustomBadgeView />}
-       onPress={() => this.setState({ selectedTab: 'profile' })}>
-       <FlexBoxLayout/>
+       onPress={() => this.setState({ selectedTab: 'Search' })}>
+       <Search/>
        </TabNavigator.Item>
    </TabNavigator>
       </View>

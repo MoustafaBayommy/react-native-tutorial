@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 
 
-import { NewsItem } from './NewsItem'
-import {SmallText} from './SmallText'
+import  NewsItem  from './NewsItem'
+import SmallText from './SmallText'
 
 import * as globalStyles from '../styles/global';
 
