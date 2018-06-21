@@ -1,35 +1,33 @@
 import React, { Component } from 'react';
-import { increment, decrement, zero } from '../store/actions';
 import {
-    AppRegistry,
     StyleSheet,
     Text,
     View,
     TouchableOpacity
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 
-export default class Countly extends Component {
-
-
-
-    render = () => (
+const Counter = props => (
         <View style={styles.container}>
             <Text style={styles.appName}>
                 Countly
             </Text>
 
             <Text style={styles.tally}>
-                Tally: 0
-           </Text>
+                Tally:{props.count}
+            </Text>
 
-            <TouchableOpacity style={styles.button} onPress={increment}>
+            <TouchableOpacity style={styles.button}
+                //    onPress={this.updateState}
+                onPress={props.increment}
+            >
 
                 <Text style={styles.buttonText}>
                     +
              </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}  onPress={decrement} >
+            <TouchableOpacity style={styles.button} onPress={props.decrement}  >
 
                 <Text style={styles.buttonText}>
                     -
@@ -37,15 +35,25 @@ export default class Countly extends Component {
 
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={zero}>
+            <TouchableOpacity style={styles.button} onPress={props.zero}>
                 <Text style={styles.buttonText}>
                     0
                  </Text>
             </TouchableOpacity>
 
         </View>
-    )
-}
+)
+
+
+Counter.propTypes = {
+    count: PropTypes.number,
+    increment: PropTypes.func,
+    decrement: PropTypes.func,
+    zero: PropTypes.func
+};
+
+
+export default Counter;
 
 
 const styles = StyleSheet.create({

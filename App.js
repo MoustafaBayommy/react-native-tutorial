@@ -19,7 +19,7 @@ import TabNavigator from 'react-native-tab-navigator';
 import  NewsFeed  from './src/Components/NewsFeed'
 import Search from './src/Components/Search'
 import SliderSwitch from './src/Components/Slider-Switch'
-import Countly  from './src/Components/Countly'
+import Countly  from './src/screens/Countly'
 import * as globalStyles from './src/styles/global';
 
 import FlexBoxLayout from './src/Components/tutorials/flexBoxLayout'
