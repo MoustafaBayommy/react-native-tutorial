@@ -19,7 +19,6 @@ import * as globalStyles from '../styles/global';
 
 export default class NewsFeed extends Component {
 
-
     constructor(props) {
         super(props);
         this.ds = new ListView.DataSource({
@@ -36,7 +35,24 @@ export default class NewsFeed extends Component {
         this.renderRow.bind(this);
         this.openModel.bind(this);
         this.closeModel.bind(this);
+        this.refresh = this.refresh.bind(this); 
     }
+
+    componentWillMount() {  
+        this.refresh(); 
+    }
+
+    componentWillReceiveProps(nextProps) {  
+        this.setState({ 
+           dataSource: this.state.dataSource.cloneWithRows(nextProps.news) 
+         }); 
+        }
+
+        refresh() {
+            if (this.props.loadNews) {    this.props.loadNews();  } 
+        }
+
+
 
     render() {
 
@@ -103,7 +119,8 @@ export default class NewsFeed extends Component {
 
 NewsFeed.propTypes = {
     news: PropTypes.arrayOf(PropTypes.object),
-    listStyles: View.propTypes.style
+    listStyles: View.propTypes.style,
+    loadNews: PropTypes.func
 }
 
 
