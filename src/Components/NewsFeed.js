@@ -7,7 +7,9 @@ import {
     StyleSheet,
     Modal,
     TouchableOpacity,
-    WebView
+    WebView,
+    RefreshControl,
+    ActivityIndicator
 } from 'react-native';
 
 
@@ -29,7 +31,9 @@ export default class NewsFeed extends Component {
             dataSource:
             this.ds.cloneWithRows(props.news),
             modelVisible: false,
-            modalUrl: ''
+            modalUrl: '',
+            initialLoading: true,
+            refreshing: false
         };
 
         this.renderRow.bind(this);
@@ -44,7 +48,8 @@ export default class NewsFeed extends Component {
 
     componentWillReceiveProps(nextProps) {  
         this.setState({ 
-           dataSource: this.state.dataSource.cloneWithRows(nextProps.news) 
+           dataSource: this.state.dataSource.cloneWithRows(nextProps.news) ,
+           initialLoading: false
          }); 
         }
 
@@ -56,8 +61,20 @@ export default class NewsFeed extends Component {
 
     render() {
 
-        return (
-            <View style={globalStyles.COMMON_STYLES.pageContainer}>
+        return
+        (initialLoading && showLoadingSpinner
+            ? (
+            <View style={[listStyles, styles.loadingContainer]}>
+            <ActivityIndicator
+            animating
+            size="small"
+            {...this.props}
+            />
+            </View>
+            ) :
+        
+        (
+            <View style={styles.container}>>
 
                 <ListView
                     dataSource={this.state.dataSource}
@@ -120,12 +137,14 @@ export default class NewsFeed extends Component {
 NewsFeed.propTypes = {
     news: PropTypes.arrayOf(PropTypes.object),
     listStyles: View.propTypes.style,
-    loadNews: PropTypes.func
+    loadNews: PropTypes.func,
+    showLoadingSpinner: PropTypes.bool
 }
 
 
 
 NewsFeed.defaultProps = {
+    showLoadingSpinner: true,
     news: [{
         title: 'React Native',
         imageUrl: 'https://facebook.github.io/react/img/logo_og.png',
@@ -161,6 +180,13 @@ const styles = StyleSheet.create({
             paddingVertical: 5,
             paddingHorizontal: 10,
             flexDirection: 'row'
-        }
+        },
+        container: {
+            flex: 1
+            },
+            loadingContainer: {
+            alignItems: 'center',
+            justifyContent: 'center'
+            }
 });
 

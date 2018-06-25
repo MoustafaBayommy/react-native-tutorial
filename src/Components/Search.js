@@ -3,13 +3,24 @@ import React, { Component } from 'react';
 
  import * as globalStyles from '../styles/global';
 
-
+ import NewsFeed from './NewsFeed';
 
  export default class  Search extends Component{
+
+    constructor(props){
+        super(props);
+        this.searchNews = this.searchNews.bind(this);
+    }
 
     state={
         searchText:''
     }
+
+
+    searchNews(text) {
+        this.setState({ searchText: text });
+        this.props.searchNews(text);
+        }
  
  render=()=>
  (
@@ -18,18 +29,25 @@ import React, { Component } from 'react';
            <TextInput  
            placeholder={'Search'}
            placeholderTextColor={globalStyles.MUTED_COLOR}
-           onChangeText={text => this.setState({ searchText: text })}
+           onChangeText={this.searchNews}
            style={styles.input}
         //    keyboardType ="phone-pad"
            secureTextEntry
            />
         </View>
+
+        <NewsFeed news={this.props.filteredNews} listStyles={{}} showLoadingSpinner={false} />
     </View>
  )
 
  }
  ;
 
+
+ Search.propTypes = {   
+    filteredNews: PropTypes.arrayOf(PropTypes.object),
+    searchNews: PropTypes.func.isRequired
+    };
 
  const styles=StyleSheet.create({
     input: {

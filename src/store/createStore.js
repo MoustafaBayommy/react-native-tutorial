@@ -3,6 +3,7 @@ import createLogger from 'redux-logger';
 import newsFeedReducer from './reducers/newsFeedReducer';
 import searchTermReducer from './reducers/searchTermReducer';
 
+import promiseMiddleware from 'redux-promise';
 
 const logger = createLogger();
 
@@ -18,4 +19,5 @@ export default (initialState = {}) => (
     }),
 
     initialState,
-    applyMiddleware(logger)));
+    applyMiddleware(logger, promiseMiddleware)  
+  ));
