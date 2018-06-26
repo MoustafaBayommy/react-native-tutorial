@@ -62,8 +62,9 @@ export default class NewsFeed extends Component {
     render() {
 
         return
-        (initialLoading && showLoadingSpinner
-            ? (
+
+        initialLoading && showLoadingSpinner
+            ? 
             <View style={[listStyles, styles.loadingContainer]}>
             <ActivityIndicator
             animating
@@ -71,9 +72,10 @@ export default class NewsFeed extends Component {
             {...this.props}
             />
             </View>
-            ) :
+            
+            :
         
-        (
+        
             <View style={styles.container}>>
 
                 <ListView
@@ -83,7 +85,7 @@ export default class NewsFeed extends Component {
                 />
                 {this.renderModal()}
             </View>
-        )
+   
     }
 
 

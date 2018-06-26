@@ -11,9 +11,10 @@ import {
   View,
 } from 'react-native';
 
-import  HomeScreen  from './src/screens/HomeScreen'
+import  HomeScreen  from './src/screens/HomeScreen';
+import nav from './navigation/nav'
 
-
+const RootStack = createStackNavigator(nav);
 
 
 
@@ -27,7 +28,7 @@ const instructions = Platform.select({
 
 export default ()=>(
   <View>
-    <HomeScreen/>
+    <RootStack/>
     </View>
     );
   
