@@ -6,7 +6,7 @@ export default (state = '', action = {}) => {
 
 
     switch (action.type) {
-        case LOAD_NEWS:
+        case SEARCH_NEWS:
             return action.payload;
         default:
             return state;

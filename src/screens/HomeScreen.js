@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { increment, decrement, zero } from '../store/actions';
 import {
     StyleSheet,
     Text,

@@ -7,14 +7,15 @@
 import React, { Component } from 'react';
 import {
   Platform,
-  StyleSheet,
   View,
 } from 'react-native';
 
-import  HomeScreen  from './src/screens/HomeScreen';
 import nav from './navigation/nav'
+import {
+  createStackNavigator
+} from 'react-navigation';
 
-const RootStack = createStackNavigator(nav);
+const RootStack = createStackNavigator(nav,{    initialRouteName: 'first',});
 
 
 
@@ -27,8 +28,6 @@ const instructions = Platform.select({
 });
 
 export default ()=>(
-  <View>
     <RootStack/>
-    </View>
     );
   

@@ -1,19 +1,23 @@
 
-  import HomeScreen from '../screens/HomeScreen'
-  import IntroScreen from '../screens/IntroScreen'
+  import HelloScreen from '../screens/HelloScreen'
+  import SecondScreen from '../screens/SecondScreen'
+  import TestConnectionScreen from '../screens/TestConnectionScreen';
+
+
    
-  const nav = StackNavigator({
-    Home: { screen: HomeScreen },
-    Intro:{ screen: IntroScreen },
-    
-  }
-,
-,
-  {
-    initialRouteName: 'Intro',
+  const nav ={ 
+    first: { 
+      screen: HelloScreen
+    },
+    second: { 
+      screen: SecondScreen
+    },
+    ConnectioTest:{
+      screen:TestConnectionScreen
+    }
   }
 
-);
+;
 
 
   export default nav;

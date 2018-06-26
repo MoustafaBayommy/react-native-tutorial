@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 
  import NewsFeed from './NewsFeed';
 
+import PropTypes from 'prop-types';
+
  export default class  Search extends Component{
 
     constructor(props){
